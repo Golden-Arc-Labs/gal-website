@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+body {
+  margin: 0;
+  /* background: radial-gradient(circle, #2d1a00 10%, #110d02 40%, #000000 80%); */
+  /* background: radial-gradient(circle, #0f172a 10%, #1e293b 40%, #000000 80%); */
+  background: radial-gradient(circle, #000000 10%, #0f172a 40%, #1e293b 80%);
+  font-family: "Lato", sans-serif;
+  color: white;
+  /* Ensures text is visible on the dark background */
+}
+
+.hero {
+  /* background: url(./images/hero-bg.svg) top center no-repeat; */
+  /* background: radial-gradient(circle, #2d1a00 10%, #110d02 40%, #000000 80%); */
+  /* background: radial-gradient(circle, #0f172a 10%, #1e293b 40%, #000000 80%); */
+  background: radial-gradient(circle, #000000 10%, #0f172a 40%, #1e293b 80%);
+  /* background: radial-gradient(circle, #3a1d00 5%, #1a0e00 25%, #000000 70%); */
+
+  background-size: cover;
+}
+
+.about {
+  background: radial-gradient(circle, #000000 10%, #0f172a 40%, #1e293b 80%);
+  /* background: radial-gradient(circle, #1a0d00 15%, #0e0600 40%, #000000 80%); */
+  background-size: cover;
+}
+
+.services {
+  background: radial-gradient(circle, #000000 10%, #0f172a 40%, #1e293b 80%);
+  /* background: radial-gradient(circle, #1a0d00 15%, #0e0600 40%, #000000 80%); */
+  background-size: cover;
+}
+
+.impactVR {
+  background: radial-gradient(circle, #000000 10%, #0f172a 40%, #1e293b 80%);
+  /* background: radial-gradient(circle, #1a0d00 15%, #0e0600 40%, #000000 80%); */
+  background-size: cover;
+}
+
+.footer {
+  /* background: url(./images/footer.svg) top center no-repeat; */
+  background: radial-gradient(circle, #1a0d00 15%, #0e0600 40%, #000000 80%);
+
+  background-size: cover;
+}
+
+.contact {
+  /* background: url(./images/footer.svg) top center no-repeat; */
+  background: radial-gradient(circle, #000000 10%, #0f172a 40%, #1e293b 80%);
+  /* background: radial-gradient(circle, #1a0d00 15%, #0e0600 40%, #000000 80%); */
+
+  background-size: cover;
+}
+
+.cta {
+  background: linear-gradient(rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)
+      fixed center center;
+}
+
+.gradientBlack {
+  /* background: #131c2f; */
+  background: linear-gradient(
+    47deg,
+    rgba(19, 28, 47, 1) 0%,
+    rgba(19, 28, 47, 1) 50%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.gradientBlackTOBlueRotate {
+  background: #000000;
+  background: linear-gradient(
+    44deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(19, 28, 47, 1) 85%,
+    rgba(50, 101, 193, 1) 100%
+  );
+}
+
+.autoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
