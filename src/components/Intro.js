@@ -1,93 +1,75 @@
 import React from "react";
-import img from "../images/ram4.png";
 import introImg from "../images/IntroImage.png";
-import { Link } from "react-router-dom";
+import SectionHeading from "./ui/SectionHeading";
+import NeonButton from "./ui/NeonButton";
+
+const perks = [
+  { title: "Creative Squad", desc: "Designers, engineers & strategists in one party." },
+  { title: "Future Tech", desc: "AR/VR, metaverse & IoT specialists." },
+  { title: "Ship Fast", desc: "Agile sprints, real builds, real results." },
+];
 
 const Intro = () => {
   return (
-    <>
-      {/* Parent div */}
-      <div
-        className="about flex items-center min-h-screen   bg-white"
-        id="about"
-      >
-        {/* Child div */}
-        <div
-          className="flex flex-col-reverse lg:flex-row  justify-between lg:text-left"
-          data-aos="fade-up"
-        >
-          {/* Left div */}
-          <div className="w-2/3 lg:w-1/3 mx-auto lg:mx-4 ">
+    <div className="about relative flex min-h-screen items-center py-20" id="about">
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-4 md:px-8 lg:flex-row">
+        {/* Visual */}
+        <div className="w-full lg:w-2/5" data-aos="fade-right">
+          <div className="hud-card relative p-4">
             <img
-              alt="card img"
-              className="rounded-t float-right"
+              alt="About Golden Arc Labs"
+              className="rounded-lg"
               src={introImg}
             />
+            <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
+              <span className="chip whitespace-nowrap bg-ink-900/90">
+                <span className="h-2 w-2 animate-glow-pulse rounded-full bg-fuchsia-500" />
+                Origin Story
+              </span>
+            </div>
           </div>
-          {/* Right div */}
-          <div
-            className="max-w-[80vw] lg:w-2/3 flex flex-col lg:mx-4 justify-center p-4 m-auto"
-            // className="flex-col my-4 lg:my-0 lg:justify-end w-full lg:w-2/3 lg:pl-24 pr-24"
-            data-aos="zoom-in"
-            data-aos-delay="500"
-          >
-            <h1 className=" text-6xl lg:text-9xl font-extrabold font-[Poppins,sans-serif] text-center md:text-left">
-              <span className="text-white">ABOUT</span>
-              <span className="text-violet-400"> US</span>
-            </h1>
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-center md:text-left"
-              >
-                Founded on the belief that VR has the power to revolutionize how
-                individuals and businesses interact with digital content, Studio
-                Shodwe brings together a diverse team of creative minds and
-                technical experts. Our mission is to redefine storytelling and
-                user engagement in the metaverse era by delivering unparalleled
-                virtual experiences tailored to meet the evolving needs of our
-                clients across various industries.
-              </p>
-            </div>
+        </div>
 
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-center md:text-left"
-              >
-                We take responsibility for building custom software solutions
-                that caters for automation of your business processes and
-                improve efficiency.
-              </p>
-            </div>
-            <Link
-              to="/contact"
-              className="relative text-gray-500 font-mono bg-white inline-flex items-center justify-center min-w-[250px] m-auto px-6 py-2 my-4 text-lg 
-                shadow-xl rounded-2xl sm:w-auto sm:mb-0 group border border-violet-500
-                transition-all duration-300 ease-in-out 
-                hover:bg-gradient-to-r hover:from-violet-500 hover:via-white hover:to-violet-700
-                bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-violet-500/50"
-            >
-              Contact us
-              <svg
-                className="w-4 h-4 ml-1 transition-transform duration-300 transform group-hover:translate-x-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </Link>
+        {/* Copy */}
+        <div className="w-full lg:w-3/5" data-aos="fade-left">
+          <SectionHeading
+            align="left"
+            kicker="About Us"
+            title={
+              <>
+                THE <span className="neon-grad">GUILD</span> BEHIND THE BUILD
+              </>
+            }
+          />
+          <p className="mt-6 text-lg font-medium text-violet-200/75">
+            Golden Arc Labs was founded on a simple belief: the line between the
+            digital and the real is the next great playing field. We assembled a
+            diverse party of creative minds and technical experts to design
+            immersive experiences and dependable software that move businesses
+            from <span className="text-fuchsia-300">tutorial mode</span> to{" "}
+            <span className="text-fuchsia-300">endgame</span>.
+          </p>
+          <p className="mt-4 text-lg font-medium text-violet-200/75">
+            From custom VR worlds to automation that streamlines your daily
+            grind, we take ownership of every quest — building solutions that
+            boost efficiency, cut costs and level up the way you work.
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {perks.map((p) => (
+              <div key={p.title} className="hud-card hud-card-hover p-4">
+                <h3 className="gaming-title text-base text-white">{p.title}</h3>
+                <p className="mt-1 text-sm text-violet-200/65">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <NeonButton to="/contact">Join Our Party</NeonButton>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

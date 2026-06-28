@@ -1,77 +1,58 @@
 import React from "react";
-import img from "../images/ram4.png";
-import introImg from "../images/IntroImage.png";
 import techIntImg from "../images/TechIntegration.png";
-import { Link } from "react-router-dom";
+import SectionHeading from "./ui/SectionHeading";
+
+const stack = [
+  "React", "Node.js", "Unity", "WebXR", "Three.js",
+  "AWS", "Python", "MQTT", "Solidity", "Docker",
+];
 
 const TechIntegration = () => {
   return (
-    <>
-      {/* Parent div */}
-      <div
-        id="techIntegration"
-        className="about flex items-center min-h-screen   bg-white"
-      >
-        {/* child div */}
-        <div
-          className=" flex flex-col-reverse lg:flex-row  justify-between lg:text-left"
-          data-aos="fade-up"
-        >
-          {/* Left div */}
-          <div
-            className="flex-col w-[90vw] lg:w-2/3 m-auto lg:ml-14"
-            data-aos="zoom-in"
-            data-aos-delay="500"
-          >
-            <div className="  bg-gradient-to-r from-indigo-600 via-violet-900 to-fuchsia-900 pl-16 -ml-16">
-              <h1 className="text-5xl lg:text-9xl text-center lg:text-left font-extrabold font-[Poppins,sans-serif] pr-8 ">
-                <span className="text-white">TECHNOLOGY</span>
-                <br />
-                <span className="text-violet-400">INTEGRATION</span>
-              </h1>
-            </div>
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-center lg:text-left"
-              >
-                Founded on the belief that VR has the power to revolutionize how
-                individuals and businesses interact with digital content, Studio
-                Shodwe brings together a diverse team of creative minds and
-                technical experts. Our mission is to redefine storytelling and
-                user engagement in the metaverse era by delivering unparalleled
-                virtual experiences tailored to meet the evolving needs of our
-                clients across various industries.
-              </p>
-            </div>
+    <div
+      id="techIntegration"
+      className="about relative flex min-h-screen items-center py-20"
+    >
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-4 md:px-8 lg:flex-row">
+        {/* Copy */}
+        <div className="w-full lg:w-3/5" data-aos="fade-right">
+          <SectionHeading
+            align="left"
+            kicker="Power-Ups"
+            title={
+              <>
+                TECHNOLOGY <span className="neon-grad">INTEGRATION</span>
+              </>
+            }
+          />
+          <p className="mt-6 text-lg font-medium text-violet-200/75">
+            Great gameplay needs the right engine. We integrate cutting-edge
+            tools across reality, cloud and connected devices — wiring them into
+            a single, seamless system so your stack plays as one team.
+          </p>
+          <p className="mt-4 text-lg font-medium text-violet-200/75">
+            From legacy systems to bleeding-edge frameworks, we handle the
+            integration quests so your business runs faster, smarter and without
+            the lag.
+          </p>
 
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-center lg:text-left "
-              >
-                We take responsibility for building custom software solutions
-                that caters for automation of your business processes and
-                improve efficiency.
-              </p>
-            </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {stack.map((tech) => (
+              <span key={tech} className="chip !lowercase">
+                {tech}
+              </span>
+            ))}
           </div>
-          {/* Right div */}
-          <div
-            className={`max-w-[80vw] lg:w-1/3 flex flex-col lg:mx-4 justify-center p-4 m-auto`}
-          >
-            <img
-              alt="card img"
-              className="rounded-t float-right"
-              src={techIntImg}
-              // width={"60%"}
-            />
+        </div>
+
+        {/* Visual */}
+        <div className="w-full lg:w-2/5" data-aos="fade-left">
+          <div className="neon-frame p-3">
+            <img alt="Technology integration" className="rounded-lg" src={techIntImg} />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

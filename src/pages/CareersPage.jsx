@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDocTitle } from "../components/CustomHook";
 
 const jobsData = {
   Development: [
@@ -51,31 +52,40 @@ const jobsData = {
 };
 
 export default function CareersPage() {
+  useDocTitle("Golden Arc Labs | Careers");
   const categories = Object.keys(jobsData);
   const [activeCategory, setActiveCategory] = useState(categories[0]);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800" id="careersMain">
-      <section
-        className="bg-gradient-to-r from-violet-300 via-violet-500 to-violet-700 text-white py-20 text-center "
-        id="careersMain"
-      >
-        <h1 className="text-4xl md:text-6xl font-bold">Join GoldenArcLabs</h1>
-        <p className="text-xl mt-4 ">
-          We're building the future—come build it with us.
-        </p>
+    <div className="min-h-screen" id="careersMain">
+      {/* Hero */}
+      <section className="relative overflow-hidden px-4 py-24 text-center">
+        <div className="pointer-events-none absolute inset-0 grid-panel opacity-30" />
+        <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-fuchsia-600/20 blur-3xl" />
+        <div className="relative">
+          <span className="chip mb-6">
+            <span className="h-2 w-2 animate-glow-pulse rounded-full bg-fuchsia-500" />
+            Now Recruiting
+          </span>
+          <h1 className="gaming-title text-glow text-4xl text-white md:text-6xl">
+            JOIN THE <span className="neon-grad">GUILD</span>
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-violet-200/75">
+            We're building the future — grab your controller and build it with us.
+          </p>
+        </div>
       </section>
 
       {/* Category Tabs */}
-      <div className="flex justify-center mt-10 space-x-4">
+      <div className="flex flex-wrap justify-center gap-3 px-4">
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
-            className={`px-5 py-2 rounded-full font-medium ${
+            className={`rounded-md px-5 py-2 font-display text-sm font-bold uppercase tracking-widest transition-all duration-200 ${
               activeCategory === category
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                ? "btn-neon"
+                : "border border-violet-500/30 text-violet-200/70 hover:border-fuchsia-500/60 hover:text-white"
             }`}
           >
             {category}
@@ -84,29 +94,27 @@ export default function CareersPage() {
       </div>
 
       {/* Job Listings */}
-      <div className="max-w-4xl mx-auto px-4 py-12 grid gap-6">
+      <div className="mx-auto grid max-w-4xl gap-6 px-4 py-14">
         {jobsData[activeCategory].map((job, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md p-6 rounded-lg border border-gray-200"
-          >
-            <div className="flex justify-between items-start flex-col md:flex-row">
+          <div key={index} className="hud-card hud-card-hover p-6">
+            <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
               <div>
-                <h3 className="text-2xl font-semibold">{job.title}</h3>
-                <p className="text-sm text-gray-500">
-                  {job.location} • {job.type}
+                <h3 className="gaming-title text-xl text-white">{job.title}</h3>
+                <p className="mt-1 flex items-center gap-2 text-sm text-violet-200/60">
+                  <span className="chip !py-0.5 !text-[10px]">{job.location}</span>
+                  <span className="chip !py-0.5 !text-[10px]">{job.type}</span>
                 </p>
               </div>
               <a
                 href={job.formUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 md:mt-0 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+                className="btn-neon group shrink-0 !px-5 !py-2 !text-xs"
               >
-                Apply
+                Apply Now
               </a>
             </div>
-            <p className="mt-4 text-gray-700 whitespace-pre-line">
+            <p className="mt-4 whitespace-pre-line text-violet-200/70">
               {job.description.trim()}
             </p>
           </div>

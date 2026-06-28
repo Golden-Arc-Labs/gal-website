@@ -3,9 +3,13 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import { useDocTitle } from "../components/CustomHook";
+import SectionHeading from "../components/ui/SectionHeading";
+
+const inputClass =
+  "w-full rounded-lg border border-violet-500/30 bg-ink-900/60 px-4 py-3 text-white placeholder-violet-200/40 outline-none transition-all duration-200 focus:border-fuchsia-500/70 focus:shadow-neon-fuchsia";
 
 const Contact = () => {
-  useDocTitle("MLD | Molad e Konsult - Send us a message");
+  useDocTitle("Golden Arc Labs | Contact");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -34,23 +38,12 @@ const Contact = () => {
       `,
     };
 
-    // EmailJS service
     emailjs
-      .send(
-        // "service_izb5f2e",
-        "service_3mvwt48", //service ID
-        // "template_yiph3h7",
-        "template_k1eddsl", //templete ID
-        messageData,
-        // "a_yS8_PNnnnEHohPT"
-        "Stv3EmSezzeNEIvsX" //public key
-      )
+      .send("service_3mvwt48", "template_k1eddsl", messageData, "Stv3EmSezzeNEIvsX")
       .then(
         (response) => {
           console.log("Email sent successfully!", response);
           Notiflix.Notify.success("Message has been sent successfully!");
-          console.log("Message Sent:", JSON.stringify(messageData, null, 2));
-
           setEmail("");
           setPhone("");
           setMessage("");
@@ -65,89 +58,83 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <div
-        id="contact"
-        className="contact flex justify-center items-center w-full bg-white py-12 lg:py-24 "
-      >
-        <div
-          className="container mx-auto my-8 px-4 lg:px-20 relative"
-          data-aos="zoom-in"
+    <div
+      id="contact"
+      className="contact flex min-h-screen w-full items-center justify-center px-4 py-24"
+    >
+      <div className="relative w-full max-w-3xl" data-aos="zoom-in">
+        <button
+          onClick={handleBack}
+          className="absolute -top-4 right-0 z-50 flex h-11 w-11 items-center justify-center rounded-lg border border-violet-500/40 text-xl font-bold text-violet-200 transition-all hover:border-fuchsia-500/70 hover:text-white hover:shadow-neon-fuchsia"
+          type="button"
+          aria-label="Back to home"
         >
-          <button
-            onClick={handleBack}
-            className="absolute top-6 right-6 lg:right-24 p-2 cursor-pointer bg-white rounded-full shadow-lg hover:shadow-xl transition duration-300 z-50 text-black font-bold text-lg w-12 h-12"
-            style={{
-              fontWeight: 900,
-              fontSize: "20px",
-              scale: 4.5,
-              fontFamily: "cursive",
-            }}
-            type={"button"}
-          >
-            X
-          </button>
-          <form onSubmit={sendEmail}>
-            <div className="w-full relative bg-[#ffffff20] p-8 my-4 md:px-12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
-              <h1 className="font-bold text-center mt-6 lg:mt-0 lg:text-left uppercase text-4xl bg-gradient-to-r from-violet-300 via-violet-400 to-violet-600 bg-clip-text text-transparent mb-4">
-                We'd Love to Hear from You
-              </h1>
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-                <input
-                  name="first_name"
-                  className="w-full bg-gray-200 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="text"
-                  placeholder="First Name*"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-                <input
-                  name="last_name"
-                  className="w-full bg-gray-200 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="text"
-                  placeholder="Last Name*"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-                <input
-                  name="email"
-                  className="w-full bg-gray-200 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="email"
-                  placeholder="Email*"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                  name="phone_number"
-                  className="w-full bg-gray-200 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="number"
-                  placeholder="Phone*"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-              <div className="my-4">
-                <textarea
-                  name="message"
-                  placeholder="Message*"
-                  className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                ></textarea>
-              </div>
-              <div className="my-2 w-1/2 lg:w-2/4">
-                <button
-                  type="submit"
-                  className="uppercase text-white font-mono bg-white inline-flex items-center justify-center w-full px-6 py-2 my-4 text-lg shadow-xl rounded-2xl sm:w-auto sm:mb-0 group border border-violet-600 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-violet-200 hover:via-violet-300 hover:to-violet-400 bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-violet-500/50"
-                >
-                  Send Message
-                </button>
-              </div>
+          ✕
+        </button>
+
+        <form onSubmit={sendEmail}>
+          <div className="hud-card p-8 md:p-12">
+            <SectionHeading
+              align="left"
+              kicker="New Message"
+              title={
+                <>
+                  ENTER THE <span className="neon-grad">COMMS</span>
+                </>
+              }
+              subtitle="Drop us a line and our squad will respond within one business day."
+            />
+
+            <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+              <input
+                name="first_name"
+                className={inputClass}
+                type="text"
+                placeholder="First Name*"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                name="last_name"
+                className={inputClass}
+                type="text"
+                placeholder="Last Name*"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              <input
+                name="email"
+                className={inputClass}
+                type="email"
+                placeholder="Email*"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                name="phone_number"
+                className={inputClass}
+                type="number"
+                placeholder="Phone*"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </div>
-          </form>
-        </div>
+            <div className="my-5">
+              <textarea
+                name="message"
+                placeholder="Message*"
+                className={`${inputClass} h-36 resize-none`}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              ></textarea>
+            </div>
+            <button type="submit" className="btn-neon group w-full sm:w-auto">
+              Transmit Message
+            </button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 

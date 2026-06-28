@@ -1,72 +1,69 @@
 import React from "react";
-import img from "../images/ram4.png";
-import introImg from "../images/IntroImage.png";
-import techIntImg from "../images/TechIntegration.png";
 import img1 from "../images/impact1.png";
 import img2 from "../images/impact2.png";
 import img3 from "../images/impact3.png";
-import { Link } from "react-router-dom";
+import SectionHeading from "./ui/SectionHeading";
+
+const achievements = [
+  {
+    img: img1,
+    title: "Immersive Training",
+    desc: "VR simulations that boost knowledge retention and cut real-world risk.",
+  },
+  {
+    img: img2,
+    title: "Virtual Commerce",
+    desc: "3D storefronts and showrooms that turn browsers into buyers.",
+  },
+  {
+    img: img3,
+    title: "Next-Gen Engagement",
+    desc: "Branded worlds that keep players — and customers — coming back.",
+  },
+];
 
 const ImpactVR = () => {
   return (
-    <>
-      {/* Parent div */}
-      <div
-        id="impactVR"
-        className="impactVR flex items-center min-h-screen   bg-white"
-      >
-        {/* nest Parent div */}
-        <div
-          className=" flex flex-col gap-4 justify-center items-center"
-          data-aos="fade-up"
-        >
-          {/* Top div */}
-          <div
-            className=" w-5/6 flex-col justify-center items-center text-center mt-10 lg:my-10 lg:justify-end p-2 md:p-10 text-center lg:text-left"
-            data-aos="zoom-in"
-            data-aos-delay="500"
-          >
-            <h1 className="text-6xl lg:text-9xl text-center lg:text-left font-extrabold font-[Poppins,sans-serif]">
-              <span className="text-white">IMPACT OF</span>
-              <span className="text-violet-400"> VR</span>
-            </h1>
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-center lg:text-left"
-              >
-                Founded on the belief that VR has the power to revolutionize how
-                individuals and businesses interact with digital content, Studio
-                Shodwe brings together a diverse team of creative minds and
-                technical experts. Our mission is to redefine storytelling and
-                user engagement in the metaverse era by delivering unparalleled
-                virtual experiences tailored to meet the evolving needs of our
-                clients across various industries.
-              </p>
-            </div>
+    <div id="impactVR" className="impactVR relative flex min-h-screen items-center py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
+        <SectionHeading
+          kicker="Achievements Unlocked"
+          title={
+            <>
+              THE IMPACT OF <span className="neon-grad">VR</span>
+            </>
+          }
+          subtitle="We believe immersive tech changes how people and businesses interact with digital content. Here's what that unlocks — measurable engagement, faster learning and unforgettable experiences across every industry."
+        />
 
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-center lg:text-left"
-              >
-                We take responsibility for building custom software solutions
-                that caters for automation of your business processes and
-                improve efficiency.
-              </p>
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
+          {achievements.map((a, i) => (
+            <div
+              key={a.title}
+              className="hud-card hud-card-hover group overflow-hidden"
+              data-aos="zoom-in"
+              data-aos-delay={i * 100}
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={a.img}
+                  alt={a.title}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-transparent" />
+                <span className="chip absolute left-3 top-3 bg-ink-900/80 !py-0.5 !text-[10px]">
+                  +{(i + 1) * 100} XP
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="gaming-title text-lg text-white">{a.title}</h3>
+                <p className="mt-2 text-sm text-violet-200/70">{a.desc}</p>
+              </div>
             </div>
-          </div>
-          {/* Bottom div */}
-          <div className=" flex flex-col lg:flex-row gap-4 lg:mx-4 justify-center p-4 mb-16">
-            <img alt="card img" className="rounded-t float-right" src={img1} />
-            <img alt="card img" className="rounded-t float-right" src={img2} />
-            <img alt="card img" className="rounded-t float-right" src={img3} />
-          </div>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

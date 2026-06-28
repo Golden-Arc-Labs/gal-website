@@ -2,36 +2,21 @@ import heroImg from "../images/VRImage.png";
 import vrImg from "../images/vr.svg";
 import webDev from "../images/web-dev.svg";
 import { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import NeonButton from "./ui/NeonButton";
 
 const Hero = () => {
   const slides = [
+    { word: "REALITY", tag: "AR / VR Worlds", image: vrImg, round: false },
     {
-      title1: "AR & VR ",
-      title2: "DEVELOPMENT",
-      image: vrImg,
-    },
-    {
-      title1: "Internet of Things ",
-      title2: "(IoT)",
+      word: "CONNECTION",
+      tag: "Internet of Things",
       image:
-        "https://plus.unsplash.com/premium_photo-1687205902327-b43a44b75192?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://plus.unsplash.com/premium_photo-1687205902327-b43a44b75192?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0",
+      round: true,
     },
-    {
-      title1: "METAVERSE",
-      title2: "SOLUTIONS",
-      image: heroImg,
-    },
-    {
-      title1: "SEO & DIGITAL MARKETING",
-      title2: "SERVICES",
-      image: heroImg,
-    },
-    {
-      title1: "WEB & SaaS",
-      title2: "DEVELOPMENT",
-      image: webDev,
-    },
+    { word: "THE METAVERSE", tag: "Virtual Worlds", image: heroImg, round: false },
+    { word: "YOUR REACH", tag: "SEO & Growth", image: heroImg, round: false },
+    { word: "THE WEB", tag: "Web & SaaS", image: webDev, round: false },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -40,98 +25,130 @@ const Hero = () => {
   useEffect(() => {
     let timer;
     const interval = setInterval(() => {
-      setFade(false); // trigger fade out
+      setFade(false);
       timer = setTimeout(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
-        setFade(true); // trigger fade in
-      }, 1000); // short delay to allow fade-out before changing slide
+        setFade(true);
+      }, 600);
     }, 4000);
     return () => {
       clearInterval(interval);
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { title1, title2, image } = slides[currentSlide];
+  const stats = [
+    { value: "50+", label: "Quests Cleared" },
+    { value: "10+", label: "Years XP" },
+    { value: "5", label: "Tech Realms" },
+    { value: "24/7", label: "Co-op Support" },
+  ];
+
+  const { word, tag, image, round } = slides[currentSlide];
+
   return (
-    <>
-      <div className="hero" id="hero">
-        <div
-          className="m-auto overflow-hidden mx-4  p-2 md:p-12 h-5/6"
-          data-aos="zoom-in"
-        >
+    <div className="hero relative overflow-hidden" id="hero">
+      {/* ambient glow blobs */}
+      <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-violet-600/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-fuchsia-600/20 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-10 md:px-8 md:pt-16">
+        <div className="flex flex-col items-center gap-10 lg:flex-row lg:justify-between">
+          {/* Left */}
           <div
-            id="hero"
-            className="flex flex-col lg:flex-row py-4 justify-between text-center lg:text-left gap-6"
+            className="flex w-full flex-col items-center text-center lg:items-start lg:text-left"
+            data-aos="fade-right"
           >
-            <div
-              className="flex flex-col justify-center items-start text-center w-full "
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              {/* Large Centered Text */}
-              {/* <div className=" basis-2/3 w-full flex justify-center lg:justify-start items-end pb-8">
-                <h1 className="text-7xl lg:text-9xl font-extrabold font-[Poppins,sans-serif]">
-                  <span className="text-white">VIRTUAL</span> <br />
-                  <span className="text-violet-400">REALITY</span>
-                </h1>
-              </div> */}
-              <div
-                className={` basis-2/4 w-full flex justify-center lg:justify-start items-end pb-8 transition-all duration-1000 ease-in-out transform ${
-                  fade
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-10"
-                } }
-key={text-${currentSlide}`}
+            <span className="chip mb-6">
+              <span className="h-2 w-2 animate-glow-pulse rounded-full bg-fuchsia-500" />
+              Player 1 — Golden Arc Labs
+            </span>
+
+            <h1 className="gaming-title text-5xl leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+              LEVEL UP
+              <br />
+              <span className="text-violet-200/80 text-3xl font-semibold tracking-widest sm:text-4xl">
+                {"// "}we engineer
+              </span>
+              <br />
+              <span
+                className={`neon-grad text-glow inline-block transition-all duration-500 ${
+                  fade ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
+                }`}
               >
-                <h1 className="text-4xl sm:text-6xl lg:text-8xl font-extrabold font-[Poppins,sans-serif] text-center lg:text-left">
-                  <span className="text-white">{title1}</span> <br />
-                  <span className="text-violet-400">{title2}</span>
-                </h1>
-              </div>
+                {word}
+              </span>
+            </h1>
 
-              {/* Search Bar */}
-              <div className="basis-1/3 w-full flex justify-center lg:justify-start items-center">
-                <div className="bg-white rounded-full px-10 py-3 flex lflex-row items-center">
-                  {/* Fixed-width container for animated text */}
-                  <div className="overflow-hidden whitespace-nowrap">
-                    <span className="text-black text-lg lg:text-2xl font-mono animate-typing inline-block">
-                      www.goldenarclabs.com
-                    </span>
-                  </div>
+            <p className="mt-6 max-w-xl text-lg font-medium text-violet-200/70">
+              Golden Arc Labs is your co-op partner for AR/VR, the metaverse,
+              IoT, SEO and full-stack web &amp; SaaS. We turn ambitious ideas
+              into high-score-worthy digital products.
+            </p>
 
-                  {/* Search icon in a separate fixed-width div */}
-                  <div className="flex justify-center items-center ml-4 ">
-                    <FaSearch className="text-blue-500  text-xl lg:text-2xl" />
-                  </div>
-                </div>
-              </div>
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              <NeonButton to="/contact">Press Start</NeonButton>
+              <NeonButton to="/#services" variant="ghost" withArrow={false}>
+                Explore Arsenal
+              </NeonButton>
             </div>
 
-            <div
-              className={`flex justify-center w-full lg:w-1/2 transition-all duration-1000 ease-in-out transform 
-                           ${
-                             fade
-                               ? "opacity-100 translate-x-0"
-                               : "opacity-0 translate-x-40"
-                           }
-                         `}
-              key={`image-${currentSlide}`}
-            >
-              <img
-                alt="hero"
-                className={`rounded-${
-                  currentSlide === 1 ? "full" : "xl"
-                } duration-1000 w-auto h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-md xl:max-w-xl`}
-                src={image}
-                width={currentSlide === 4 ? "200%" : "100%"}
-                height={currentSlide === 4 ? "200%" : "100%"}
-              />
+            {/* Stats bar */}
+            <div className="mt-12 grid w-full max-w-xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-violet-500/20 bg-violet-500/5 sm:grid-cols-4">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="bg-ink-900/40 px-4 py-4 text-center"
+                >
+                  <div className="gaming-title text-2xl text-fuchsia-400">
+                    {s.value}
+                  </div>
+                  <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-violet-200/60">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — HUD framed visual */}
+          <div
+            className="flex w-full justify-center lg:w-1/2"
+            data-aos="fade-left"
+          >
+            <div className="hud-card animate-float w-full max-w-md p-4">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="font-display text-xs uppercase tracking-widest text-violet-300/70">
+                  {tag}
+                </span>
+                <span className="flex gap-1">
+                  <span className="h-2 w-2 rounded-full bg-fuchsia-500" />
+                  <span className="h-2 w-2 rounded-full bg-violet-500" />
+                  <span className="h-2 w-2 rounded-full bg-cyan-400" />
+                </span>
+              </div>
+              <div className="relative overflow-hidden rounded-lg grid-panel">
+                <img
+                  alt="hero"
+                  className={`mx-auto h-auto w-full max-w-sm object-contain transition-all duration-700 ${
+                    round ? "rounded-full" : "rounded-lg"
+                  } ${fade ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
+                  src={image}
+                />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-16 animate-scan bg-gradient-to-b from-fuchsia-400/20 to-transparent" />
+              </div>
+              <div className="mt-3 flex items-center gap-2 rounded-md border border-violet-500/20 bg-ink-900/60 px-3 py-2">
+                <span className="h-2 w-2 animate-glow-pulse rounded-full bg-cyan-400" />
+                <span className="font-mono text-sm text-violet-200/80">
+                  www.goldenarclabs.com
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

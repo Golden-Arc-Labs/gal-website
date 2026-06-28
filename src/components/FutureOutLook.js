@@ -1,66 +1,65 @@
 import React from "react";
-import img from "../images/ram4.png";
 import vrImg from "../images/VRBOX.png";
-import { Link } from "react-router-dom";
+import SectionHeading from "./ui/SectionHeading";
+import NeonButton from "./ui/NeonButton";
+
+const roadmap = [
+  { phase: "NOW", title: "Immersive Web", desc: "WebXR & 3D experiences in the browser." },
+  { phase: "NEXT", title: "Spatial Computing", desc: "AR overlays for work and play." },
+  { phase: "SOON", title: "Persistent Worlds", desc: "Always-on metaverse economies." },
+];
 
 const FutureOutLook = () => {
   return (
-    <>
-      {/* Parent div */}
-      <div id="futureOutLook" className="about flex items-center min-h-screen   bg-white" >
-        {/* child Parent div */}
-        <div className=" flex flex-col-reverse lg:flex-row justify-between"
-          data-aos="fade-up">
-          {/* Left div */}
-          <div className="w-full flex flex-col justify-center px-20 pb-8">
-            <img
-              alt="card img"
-              className="rounded-t float-right"
-              src={vrImg}
-            />
+    <div id="futureOutLook" className="about relative flex min-h-screen items-center py-20">
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-4 md:px-8 lg:flex-row">
+        {/* Visual */}
+        <div className="w-full lg:w-1/2" data-aos="fade-right">
+          <div className="hud-card animate-float p-4">
+            <img alt="Future outlook" className="rounded-lg" src={vrImg} />
+          </div>
+        </div>
+
+        {/* Copy + roadmap */}
+        <div className="w-full lg:w-1/2" data-aos="fade-left">
+          <SectionHeading
+            align="left"
+            kicker="New Game +"
+            title={
+              <>
+                FUTURE <span className="neon-grad">OUTLOOK</span>
+              </>
+            }
+          />
+          <p className="mt-6 text-lg font-medium text-violet-200/75">
+            The next levels of the internet are immersive, spatial and
+            always-on. We're already building toward them — so when the meta
+            shifts, you're not respawning at the start. You're ahead.
+          </p>
+
+          <div className="mt-8 space-y-4">
+            {roadmap.map((r) => (
+              <div
+                key={r.phase}
+                className="hud-card hud-card-hover flex items-center gap-4 p-4"
+              >
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-fuchsia-500/40 bg-fuchsia-500/10 font-display text-xs font-bold text-fuchsia-300">
+                  {r.phase}
+                </span>
+                <div>
+                  <h3 className="gaming-title text-base text-white">{r.title}</h3>
+                  <p className="text-sm text-violet-200/65">{r.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right div */}
-          <div className="flex-col my-4 lg:my-0 lg:justify-end w-full p-20"
-            data-aos="zoom-in"
-            data-aos-delay="500"
-          >
-            <h1 className="text-5xl lg:text-9xl font-extrabold font-[Poppins,sans-serif]">
-              <span className="text-white">FUTURE</span><br />
-              <span className="text-violet-400">OUTLOOK</span>
-            </h1>
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-left "
-              >
-                Founded on the belief that VR has the power to revolutionize how
-                individuals and businesses interact with digital content, Studio
-                Shodwe brings together a diverse team of creative minds and
-                technical experts. Our mission is to redefine storytelling and
-                user engagement in the metaverse era by delivering unparalleled
-                virtual experiences tailored to meet the evolving needs of our
-                clients across various industries.
-              </p>
-            </div>
-
-            <div>
-              <p
-                className="my-3 text-xl font-semibold tracking-tight -mb-5 lg:mb-5 
-                bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 
-                bg-clip-text text-transparent text-left "
-              >
-                We take responsibility for building custom software solutions
-                that caters for automation of your business processes and
-                improve efficiency.
-              </p>
-            </div>
+          <div className="mt-10">
+            <NeonButton to="/contact">Build The Future</NeonButton>
           </div>
-
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

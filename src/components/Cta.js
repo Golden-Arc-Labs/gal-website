@@ -1,44 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import NeonButton from "./ui/NeonButton";
+
 const Cta = () => {
   return (
-    <div className="w-full flex items-center justify-center text-white cta">
-      <div className="mx-8 w-full h-96 text-center lg:text-left py-16 px-12 flex lg:justify-between items-center">
-        <div className="w-full flex flex-col lg:flex-row lg:justify-around">
-          <div className="mb-4">
-            <p className="text-2xl md:text-4xl font-bold mb-4">
-              Are you ready to scale your business?
-            </p>
-            <p className="text-lg md:text-2xl">
-              Get in touch and let us build something amazing{" "}
-              <span className="font-black">together!</span>
-            </p>
-          </div>
+    <div className="cta relative w-full overflow-hidden py-24 text-white">
+      <div className="pointer-events-none absolute inset-0 grid-panel opacity-20" />
+      <div
+        className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 text-center lg:flex-row lg:justify-between lg:text-left"
+        data-aos="zoom-in"
+      >
+        <div>
+          <span className="kicker">Ready Player You</span>
+          <h2 className="gaming-title mt-3 text-3xl text-white md:text-5xl">
+            READY TO <span className="neon-grad text-glow">SCALE UP?</span>
+          </h2>
+          <p className="mt-4 max-w-xl text-lg text-violet-200/80">
+            Get in touch and let's build something legendary{" "}
+            <span className="font-bold text-fuchsia-300">together.</span>
+          </p>
+        </div>
 
-          <div className="w-full lg:w-72 pt-6 lg:mx-12">
-            <Link
-              to="/contact"
-              className="text-white font-mono bg-white inline-flex items-center justify-center w-full px-6 py-2 my-4 text-lg 
-             shadow-xl rounded-2xl sm:w-auto sm:mb-0 group border border-white hover:border-violet-500
-             transition-all duration-300 ease-in-out 
-             hover:bg-gradient-to-r hover:from-violet-200 hover:via-violet-300 hover:to-violet-400
-             bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-violet-500/50"
-            >
-              Send a message
-              <svg
-                className="w-5 h-5 ml-1 group-hover:translate-x-2 duration-500 ease-in"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </Link>
-          </div>
+        <div className="shrink-0">
+          <NeonButton to="/contact">Send A Message</NeonButton>
         </div>
       </div>
     </div>

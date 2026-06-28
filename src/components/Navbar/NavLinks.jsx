@@ -4,126 +4,57 @@ import { Link } from "react-router-dom";
 
 const servicesLinks = [
   { label: "WEB & SaaS Development", path: "/services/webdev" },
-  { label: "SEO & Digital Marketting", path: "/services/seo" },
-  { label: "Internet of Things(IOT)", path: "/services/iot" },
+  { label: "SEO & Digital Marketing", path: "/services/seo" },
+  { label: "Internet of Things (IoT)", path: "/services/iot" },
   { label: "AR & VR Development", path: "/services/arvr" },
   { label: "Metaverse", path: "/services/metaverse" },
 ];
 
-const NavLinks = ({ styles }) => {
-  const [activeLink, setActiveLink] = useState("");
+const linkClass =
+  "relative px-4 py-2 font-display text-sm font-semibold uppercase tracking-widest text-violet-200/80 " +
+  "transition-all duration-300 hover:text-white hover:[text-shadow:0_0_12px_rgba(217,70,239,0.8)]";
+
+const NavLinks = ({ styles, onNavigate }) => {
   const [open, setOpen] = useState(false);
 
+  const handleNav = () => {
+    setOpen(false);
+    onNavigate && onNavigate();
+  };
+
   return (
-    <div className={`${styles} relative`}>
-      <HashLink
-        className={`px-4 font-extrabold text-gray-500 font-mono border 
-          transition-all duration-300 ease-in-out rounded-2xl py-2
-          hover:bg-gradient-to-r hover:from-purple-700 hover:via-white hover:to-violet-800 
-          bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-purple-500/50
-          ${activeLink === "/#" ? "border-gray-800" : "border-transparent"}`}
-        smooth
-        to="/#"
-        onClick={() => setActiveLink("/#")}
-      >
+    <div className={`${styles || "flex items-center gap-1"} relative`}>
+      <HashLink className={linkClass} smooth to="/#hero" onClick={handleNav}>
         Home
       </HashLink>
 
-      {/* About */}
-      <HashLink
-        className={`px-4 font-extrabold text-gray-500 font-mono border 
-          transition-all duration-300 ease-in-out rounded-2xl py-2
-          hover:bg-gradient-to-r hover:from-purple-700 hover:via-white hover:to-violet-800 
-          bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-purple-500/50
-          ${
-            activeLink === "/#about" ? "border-gray-800" : "border-transparent"
-          }`}
-        smooth
-        to="/#about"
-        onClick={() => setActiveLink("/#about")}
-      >
+      <HashLink className={linkClass} smooth to="/#about" onClick={handleNav}>
         About
       </HashLink>
 
-      {/* Services Dropdown */}
-      {/* <div className="relative group inline ">
+      {/* Services dropdown */}
+      <div
+        className="relative"
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
         <button
-          className={`px-4 w-full lg:w-fit text-left group font-extrabold  text-gray-500 font-mono border transition-all duration-300 ease-in-out rounded-2xl py-2 hover:bg-gradient-to-r hover:from-purple-700 hover:via-white hover:to-violet-800 bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-purple-500/50
-            ${
-              activeLink.startsWith("/services")
-                ? "border-gray-800"
-                : "border-transparent"
-            }`}
+          className={`${linkClass} flex items-center gap-1`}
+          onClick={() => setOpen((o) => !o)}
         >
           Services
+          <span className="text-fuchsia-400">▾</span>
         </button>
 
-        <div className=" relative lg:absolute hidden group-hover:block mt-5 top-full left-0 mt-2 w-60 bg-black text-left shadow-lg rounded border-gray-300 z-50">
-          {servicesLinks.map((service) => (
-            <Link
-              key={service.path}
-              to={service.path}
-              onClick={() => setActiveLink(service.path)}
-              className="block px-4 text-white hover:bg-violet-800 hover:rounded hover:font-bold  hover:scale-105 transition-all duration-300 ease-in-out"
-            >
-              {service.label}
-            </Link>
-          ))}
-        </div>
-      </div> */}
-      {/* <div className="relative inline-block text-left group">
-        <button className="text-white font-semibold hover:underline">
-          Services ▾
-        </button>
-
-        <div className="absolute left-0 mt-2 w-64 rounded-md border border-white/30 bg-black/70 backdrop-blur-md shadow-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <ul className="py-2 text-white font-bold space-y-1 px-4">
-            <li className="hover:text-blue-400 cursor-pointer">E-Learning</li>
-            <li className="hover:text-blue-400 cursor-pointer">
-              Product Demonstration
-            </li>
-            <li className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 cursor-pointer">
-              Virtual Showroom
-            </li>
-            <li className="hover:text-blue-400 cursor-pointer">Industry 4.0</li>
-            <li className="hover:text-blue-400 cursor-pointer">Training</li>
-            <li className="hover:text-blue-400 cursor-pointer">Metaverse</li>
-          </ul>
-        </div>
-      </div> */}
-
-      <div className="relative group inline-block">
-        <button
-          className={`px-4 w-full lg:w-fit text-left group font-extrabold  text-gray-500 font-mono border transition-all duration-300 ease-in-out rounded-2xl py-2 hover:bg-gradient-to-r hover:from-purple-700 hover:via-white hover:to-violet-800 bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-purple-500/50
-            ${
-              activeLink.startsWith("/services")
-                ? "border-gray-800"
-                : "border-transparent"
-            }`}
-          onMouseEnter={() => setOpen(true)}
-        >
-          Services ▾
-        </button>
-
-        {/* Dropdown */}
         {open && (
-          <div
-            className="absolute left-0 mt-2 lg:mt-0 top-0 lg:top-[3.8rem] w-64 rounded-md border border-white/30 bg-black/10 backdrop-blur-md shadow-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 "
-            onMouseLeave={() => setOpen(false)}
-          >
-            <ul className="py-2 text-white font-bold space-y-4 px-4">
-              {/* <li className="text-white hover:text-transparent  bg-clip-text bg-gradient-to-r from-violet-300 via-violet-500 to-violet-700 cursor-pointer hover:font-bold  hover:scale-105 transition-all duration-300 ease-in-out">
-              Virtual Showroom
-            </li> */}
+          <div className="absolute left-0 top-full z-40 mt-1 w-64 overflow-hidden rounded-lg border border-violet-500/30 bg-ink-800/95 shadow-neon-violet backdrop-blur-md">
+            <ul className="py-2">
               {servicesLinks.map((service) => (
-                <li
-                  className="text-white hover:text-transparent  bg-clip-text bg-gradient-to-r from-violet-300 via-violet-500 to-violet-700 cursor-pointer hover:font-bold  hover:scale-105 transition-all duration-300 ease-in-out"
-                  key={service.path}
-                >
+                <li key={service.path}>
                   <Link
                     to={service.path}
-                    onClick={() => setActiveLink(service.path)}
-                    // className="block px-4 text-white hover:bg-violet-800 hover:rounded hover:font-bold  hover:scale-105 transition-all duration-300 ease-in-out"
+                    onClick={handleNav}
+                    className="block border-l-2 border-transparent px-4 py-2 font-display text-sm font-semibold uppercase tracking-wider text-violet-200/80 transition-all duration-200 hover:border-fuchsia-500 hover:bg-violet-500/10 hover:pl-5 hover:text-white"
                   >
                     {service.label}
                   </Link>
@@ -134,23 +65,22 @@ const NavLinks = ({ styles }) => {
         )}
       </div>
 
-      {/* Contact */}
       <HashLink
-        className={`px-4 font-extrabold text-gray-500 font-mono border 
-          transition-all duration-300 ease-in-out rounded-2xl py-2
-          hover:bg-gradient-to-r hover:from-purple-700 hover:via-white hover:to-violet-800 
-          bg-clip-text hover:text-transparent hover:shadow-lg hover:shadow-purple-500/50
-          ${
-            activeLink === "/contact#contact"
-              ? "border-gray-800"
-              : "border-transparent"
-          }`}
+        className={linkClass}
         smooth
-        to="/contact#contact"
-        onClick={() => setActiveLink("/contact#contact")}
+        to="/careers/#careersMain"
+        onClick={handleNav}
       >
-        Contact Us
+        Careers
       </HashLink>
+
+      <Link
+        to="/contact"
+        onClick={handleNav}
+        className="btn-neon ml-2 !px-5 !py-2 !text-xs"
+      >
+        Contact
+      </Link>
     </div>
   );
 };
