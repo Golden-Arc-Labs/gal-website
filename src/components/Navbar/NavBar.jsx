@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import NavLinks from "./NavLinks";
 import { HashLink } from "react-router-hash-link";
-import logoImage from "../../images/logo.png";
 import Sidebar from "./Sidebar";
+
+const logoImage = `${process.env.PUBLIC_URL}/Golden_Arc_Lab_logo.svg`;
 
 const NavBar = () => {
   const [top, setTop] = useState(!window.scrollY);
@@ -30,8 +31,8 @@ const NavBar = () => {
           <HashLink smooth to="/#hero">
             <div className="flex flex-row justify-center items-center gap-x-5 py-2">
               <img
-                alt="card img"
-                className="rounded-t w-16 h-16"
+                alt="Golden Arc Labs logo"
+                className="h-16 w-auto"
                 src={logoImage}
               />
               <h1 className={`font-extrabold text-4xl text-white `}>

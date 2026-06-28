@@ -25,7 +25,7 @@ const Footer = () => {
                 </h3>
                 <div className="text-md font-medium text-white">
                   {/* <h5></h5> */}
-                  <p>Sector 70</p>
+                  <p>G-32, Sector 63</p>
                   <p>Noida, Uttar Pradesh</p>
                   <p>India</p>
                 </div>
