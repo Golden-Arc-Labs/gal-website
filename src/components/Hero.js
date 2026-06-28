@@ -65,15 +65,15 @@ const Hero = () => {
               Player 1 — Golden Arc Labs
             </span>
 
-            <h1 className="gaming-title text-5xl leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+            <h1 className="gaming-title break-words text-4xl leading-[1.05] text-white sm:text-6xl lg:text-7xl">
               LEVEL UP
               <br />
-              <span className="text-violet-200/80 text-3xl font-semibold tracking-widest sm:text-4xl">
+              <span className="text-2xl font-semibold tracking-widest text-violet-200/80 sm:text-4xl">
                 {"// "}we engineer
               </span>
               <br />
               <span
-                className={`neon-grad text-glow inline-block transition-all duration-500 ${
+                className={`neon-grad text-glow inline-block break-words transition-all duration-500 ${
                   fade ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
                 }`}
               >

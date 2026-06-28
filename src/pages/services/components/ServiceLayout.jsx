@@ -29,7 +29,7 @@ const ServiceLayout = ({
   }, []);
 
   return (
-    <div className="min-h-screen max-w-[100vw] overflow-hidden">
+    <div className="min-h-screen w-full max-w-full overflow-hidden">
       {/* HERO */}
       <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
         <video

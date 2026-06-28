@@ -28,20 +28,20 @@ const NavBar = () => {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl flex-row items-center justify-between px-4 md:px-8">
+      <div className="mx-auto flex max-w-7xl flex-row items-center justify-between gap-2 px-4 md:px-8">
         {/* Logo */}
-        <HashLink smooth to="/#hero">
-          <div className="group flex flex-row items-center gap-x-3 py-2">
+        <HashLink smooth to="/#hero" className="min-w-0 shrink">
+          <div className="group flex min-w-0 flex-row items-center gap-x-2 py-2 sm:gap-x-3">
             <img
               alt="Golden Arc Labs logo"
-              className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-10 w-auto shrink-0 transition-transform duration-300 group-hover:scale-105 sm:h-14"
               src={logoImage}
             />
-            <div className="flex flex-col leading-none">
-              <span className="gaming-title text-xl text-white md:text-2xl">
+            <div className="flex min-w-0 flex-col leading-none">
+              <span className="gaming-title truncate text-base text-white sm:text-xl md:text-2xl">
                 Golden Arc
               </span>
-              <span className="font-display text-xs font-bold uppercase tracking-[0.4em] text-fuchsia-400">
+              <span className="truncate font-display text-[10px] font-bold uppercase tracking-[0.3em] text-fuchsia-400 sm:text-xs sm:tracking-[0.4em]">
                 Labs
               </span>
             </div>
@@ -55,7 +55,7 @@ const NavBar = () => {
 
         {/* Mobile burger */}
         <button
-          className="rounded-lg border border-violet-500/30 p-2 text-violet-200 transition-colors hover:border-fuchsia-500/60 hover:text-white lg:hidden"
+          className="shrink-0 rounded-lg border border-violet-500/30 p-2 text-violet-200 transition-colors hover:border-fuchsia-500/60 hover:text-white lg:hidden"
           onClick={handleClick}
           aria-label="Open menu"
         >
